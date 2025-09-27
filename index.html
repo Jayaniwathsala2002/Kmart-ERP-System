@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kmart ERP System | Pastel Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::-webkit-scrollbar{
+        display: none;
+    }
+
+    :root {
+      /* Vibrant pastel highlights */
+      --primary: #fe025a;       /* Soft coral pink */
+      --primary-dark: #eb4479;
+      --secondary: #2aa1dc;     /* Sky blue */
+      --accent: #42df83;        /* Mint green */
+      --highlight: #e39c38;     /* Peach */
+      --light: #ffffff;
+      --dark: #4a4a6a;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --border: rgba(200, 200, 220, 0.5);
+      --shadow: 0 6px 20px rgba(180, 180, 220, 0.25);
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #fff9fb, #f8fdff, #fafff9);
+      color: var(--dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 2.8rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, #ffffff, #fff9fb);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(255, 158, 192, 0.3);
+    }
+
+    .logo-icon i {
+      font-size: 2rem;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 2.9rem;
+      font-weight: 800;
+      background: linear-gradient(to right, var(--primary), var(--secondary), var(--highlight));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.8px;
+    }
+
+    header p {
+      max-width: 720px;
+      margin: 1.3rem auto 0;
+      font-size: 1.25rem;
+      opacity: 0.88;
+      line-height: 1.7;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.4rem;
+      padding: 0 2rem 3rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .container {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .container-header {
+      padding: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .container-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(255, 158, 192, 0.2), rgba(160, 210, 235, 0.2));
+    }
+
+    .container h2 {
+      font-size: 1.55rem;
+      font-weight: 700;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .iframe-container {
+      flex: 1;
+      padding: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    iframe {
+      width: 100%;
+      height: 460px;
+      border: none;
+      border-radius: 18px;
+      background: white;
+      box-shadow: 0 6px 16px rgba(180, 180, 220, 0.25);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      padding: 0 2rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .feature-icon {
+      width: 75px;
+      height: 75px;
+      margin: 0 auto 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      font-size: 2rem;
+      color: white;
+      box-shadow: 0 6px 15px rgba(255, 158, 192, 0.3);
+    }
+
+    .feature-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 1.1rem;
+      color: var(--dark);
+    }
+
+    .feature-card p {
+      opacity: 0.82;
+      line-height: 1.65;
+    }
+
+    /* Development Section */
+    .development-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--dark);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      margin: 0.8rem auto 0;
+      border-radius: 2px;
+    }
+
+    .dev-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .dev-card {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 16px;
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+    }
+
+    .dev-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .dev-card h3 i {
+      color: var(--primary);
+      background: rgba(255, 158, 192, 0.15);
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dev-card ul {
+      padding-left: 1.5rem;
+    }
+
+    .dev-card li {
+      margin-bottom: 0.8rem;
+      opacity: 0.85;
+    }
+
+    .dev-card p {
+      opacity: 0.85;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.2rem;
+      opacity: 0.75;
+      font-size: 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      header h1 {
+        font-size: 2.3rem;
+      }
+      
+      main {
+        grid-template-columns: 1fr;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+      }
+      
+      .dev-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 2rem 1.5rem;
+      }
+      
+      header h1 {
+        font-size: 1.9rem;
+      }
+      
+      .logo {
+        gap: 0.8rem;
+      }
+      
+      .logo-icon {
+        width: 46px;
+        height: 46px;
+      }
+      
+      iframe {
+        height: 380px;
+      }
+      
+      .development-section {
+        padding: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <i class="fas fa-store"></i>
+      </div>
+      <h1>Kmart ERP System</h1>
+    </div>
+    <p>Kmart ERP System focuses on enabling staff to complete tasks quickly and managers to make informed decisions effortlessly, combining intuitive UI, responsive layouts, and insightful dashboards..</p>
+  </header>
+
+  <main>
+    <!-- Figma Design Section -->
+    <div class="container">
+      <div class="container-header">
+        <div class="container-icon">
+          <i class="fab fa-figma"></i>
+        </div>
+        <h2>Figma Design System</h2>
+      </div>
+      <div class="iframe-container">
+        <iframe 
+          src="https://embed.figma.com/design/8zJWXt85txxfikapM4HWrW/Kmart---ERP-System?node-id=1-2&embed-host=share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Code/App Section -->
+    <div class="container">
+      <div class="container-header">
+        <div class="container-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <h2>Application Preview</h2>
+      </div>
+      <div class="iframe-container">
+        <iframe src="https://your-app-link.com" allowfullscreen></iframe>
+      </div>
+    </div>
+  </main>
+
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <h3>Real-time Analytics</h3>
+      <p>Monitor sales performance, inventory levels, and customer behavior with live dashboards.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fas fa-boxes"></i>
+      </div>
+      <h3>Inventory Management</h3>
+      <p>Track stock levels across all locations with automated reordering and alerts.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <h3>Customer Insights</h3>
+      <p>Understand purchasing patterns and personalize marketing campaigns effectively.</p>
+    </div>
+  </section>
+
+  <!-- Development Section -->
+  <section class="development-section">
+    <h2 class="section-title">Development & Design Approach</h2>
+    <div class="dev-content">
+      <div class="dev-card">
+        <h3><i class="fas fa-palette"></i> Design Philosophy</h3>
+        <p>The Kmart ERP System features a modern pastel color scheme with vibrant highlights to create a professional yet approachable interface. The design prioritizes:</p>
+        <ul>
+          <li>Clear visual hierarchy with gradient text accents</li>
+          <li>Soft shadows and rounded corners for depth</li>
+          <li>Consistent spacing and alignment</li>
+          <li>Accessible color contrast for all users</li>
+          <li>Responsive layout for all device sizes</li>
+        </ul>
+      </div>
+      
+      <div class="dev-card">
+        <h3><i class="fas fa-code"></i> Technologies Used</h3>
+        <p>The frontend was developed using modern web standards:</p>
+        <ul>
+          <li><strong>HTML5 & CSS3</strong> for semantic structure</li>
+          <li><strong>CSS Variables</strong> for consistent theming</li>
+          <li><strong>Flexbox & CSS Grid</strong> for responsive layouts</li>
+          <li><strong>Font Awesome</strong> for vector icons</li>
+          <li><strong>Google Fonts</strong> (system-ui stack) for typography</li>
+          <li>No JavaScript frameworks for optimal performance</li>
+        </ul>
+      </div>
+      
+      <div class="dev-card">
+        <h3><i class="fas fa-cogs"></i> Development Process</h3>
+        <p>The system was built following a structured approach:</p>
+        <ul>
+          <li>Wireframing in Figma for initial concept validation</li>
+          <li>Component-based design system implementation</li>
+          <li>Mobile-first responsive development</li>
+          <li>Cross-browser compatibility testing</li>
+          <li>Performance optimization (minimal assets)</li>
+          <li>Accessibility compliance (WCAG 2.1)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Kmart ERP System &copy; 2025 | Enterprise Resource Planning Solution</p>
+  </footer>
+</body>
+</html>
