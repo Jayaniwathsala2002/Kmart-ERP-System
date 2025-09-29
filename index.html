@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kmart ERP System | Pastel Dashboard</title>
+  <title>Kmart ERP System</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
@@ -12,17 +12,16 @@
       box-sizing: border-box;
     }
 
-    ::-webkit-scrollbar{
-        display: none;
+    ::-webkit-scrollbar {
+      display: none;
     }
 
     :root {
-      /* Vibrant pastel highlights */
-      --primary: #fe025a;       /* Soft coral pink */
+      --primary: #fe025a;
       --primary-dark: #eb4479;
-      --secondary: #2aa1dc;     /* Sky blue */
-      --accent: #42df83;        /* Mint green */
-      --highlight: #e39c38;     /* Peach */
+      --secondary: #2aa1dc;
+      --accent: #42df83;
+      --highlight: #e39c38;
       --light: #ffffff;
       --dark: #4a4a6a;
       --card-bg: rgba(255, 255, 255, 0.92);
@@ -37,8 +36,66 @@
       min-height: 100vh;
       overflow-x: hidden;
       line-height: 1.6;
+      position: relative;
     }
 
+    /* Fullscreen overlay mode */
+    body.fullscreen-mode {
+      background: black;
+      overflow: hidden;
+    }
+
+    body.fullscreen-mode > *:not(.fullscreen-overlay) {
+      display: none !important;
+    }
+
+    .fullscreen-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fullscreen-header {
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .fullscreen-header h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .close-fullscreen {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .fullscreen-iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+
+    /* Rest of your original styles */
     header {
       padding: 2.8rem 2rem;
       text-align: center;
@@ -137,6 +194,23 @@
       color: transparent;
     }
 
+    .fullscreen-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: var(--dark);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .fullscreen-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--primary);
+    }
+
     .iframe-container {
       flex: 1;
       padding: 1.2rem;
@@ -196,7 +270,6 @@
       line-height: 1.65;
     }
 
-    /* Development Section */
     .development-section {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -283,52 +356,18 @@
     }
 
     @media (max-width: 900px) {
-      header h1 {
-        font-size: 2.3rem;
-      }
-      
-      main {
-        grid-template-columns: 1fr;
-      }
-      
-      .features {
-        grid-template-columns: 1fr;
-      }
-      
-      .dev-content {
-        grid-template-columns: 1fr;
-      }
+      header h1 { font-size: 2.3rem; }
+      main, .features, .dev-content { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
-      header {
-        padding: 2rem 1.5rem;
-      }
-      
-      header h1 {
-        font-size: 1.9rem;
-      }
-      
-      .logo {
-        gap: 0.8rem;
-      }
-      
-      .logo-icon {
-        width: 46px;
-        height: 46px;
-      }
-      
-      iframe {
-        height: 380px;
-      }
-      
-      .development-section {
-        padding: 1.8rem;
-      }
-      
-      .section-title {
-        font-size: 1.8rem;
-      }
+      header { padding: 2rem 1.5rem; }
+      header h1 { font-size: 1.9rem; }
+      .logo { gap: 0.8rem; }
+      .logo-icon { width: 46px; height: 46px; }
+      iframe { height: 380px; }
+      .development-section { padding: 1.8rem; }
+      .section-title { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -340,67 +379,61 @@
       </div>
       <h1>Kmart ERP System</h1>
     </div>
-    <p>Kmart ERP System focuses on enabling staff to complete tasks quickly and managers to make informed decisions effortlessly, combining intuitive UI, responsive layouts, and insightful dashboards..</p>
+    <p>Kmart ERP System focuses on enabling staff to complete tasks quickly and managers to make informed decisions effortlessly, combining intuitive UI, responsive layouts, and insightful dashboards.</p>
   </header>
 
   <main>
     <!-- Figma Design Section -->
-    <div class="container">
+    <div class="container" data-title="Figma Design System" data-src="https://embed.figma.com/design/8zJWXt85txxfikapM4HWrW/Kmart---ERP-System?node-id=1-2&embed-host=share">
       <div class="container-header">
         <div class="container-icon">
           <i class="fab fa-figma"></i>
         </div>
         <h2>Figma Design System</h2>
+        <button class="fullscreen-btn" aria-label="View fullscreen">
+          <i class="fas fa-expand"></i>
+        </button>
       </div>
       <div class="iframe-container">
-        <iframe 
-          src="https://embed.figma.com/design/8zJWXt85txxfikapM4HWrW/Kmart---ERP-System?node-id=1-2&embed-host=share" 
-          allowfullscreen>
-        </iframe>
+        <iframe src="https://embed.figma.com/design/8zJWXt85txxfikapM4HWrW/Kmart---ERP-System?node-id=1-2&embed-host=share" allowfullscreen></iframe>
       </div>
     </div>
 
     <!-- Code/App Section -->
-    <div class="container">
+    <div class="container" data-title="Application Preview" data-src="./web/index.html">
       <div class="container-header">
         <div class="container-icon">
           <i class="fas fa-laptop-code"></i>
         </div>
         <h2>Application Preview</h2>
+        <button class="fullscreen-btn" aria-label="View fullscreen">
+          <i class="fas fa-expand"></i>
+        </button>
       </div>
       <div class="iframe-container">
-        <iframe src="./app" allowfullscreen></iframe>
+        <iframe src="./web/index.html" allowfullscreen></iframe>
       </div>
     </div>
   </main>
 
   <section class="features">
     <div class="feature-card">
-      <div class="feature-icon">
-        <i class="fas fa-chart-line"></i>
-      </div>
+      <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
       <h3>Real-time Analytics</h3>
       <p>Monitor sales performance, inventory levels, and customer behavior with live dashboards.</p>
     </div>
-    
     <div class="feature-card">
-      <div class="feature-icon">
-        <i class="fas fa-boxes"></i>
-      </div>
+      <div class="feature-icon"><i class="fas fa-boxes"></i></div>
       <h3>Inventory Management</h3>
       <p>Track stock levels across all locations with automated reordering and alerts.</p>
     </div>
-    
     <div class="feature-card">
-      <div class="feature-icon">
-        <i class="fas fa-users"></i>
-      </div>
+      <div class="feature-icon"><i class="fas fa-users"></i></div>
       <h3>Customer Insights</h3>
       <p>Understand purchasing patterns and personalize marketing campaigns effectively.</p>
     </div>
   </section>
 
-  <!-- Development Section -->
   <section class="development-section">
     <h2 class="section-title">Development & Design Approach</h2>
     <div class="dev-content">
@@ -415,7 +448,6 @@
           <li>Responsive layout for all device sizes</li>
         </ul>
       </div>
-      
       <div class="dev-card">
         <h3><i class="fas fa-code"></i> Technologies Used</h3>
         <p>The frontend was developed using modern web standards:</p>
@@ -428,7 +460,6 @@
           <li>No JavaScript frameworks for optimal performance</li>
         </ul>
       </div>
-      
       <div class="dev-card">
         <h3><i class="fas fa-cogs"></i> Development Process</h3>
         <p>The system was built following a structured approach:</p>
@@ -447,5 +478,54 @@
   <footer>
     <p>Kmart ERP System &copy; 2025 | Enterprise Resource Planning Solution</p>
   </footer>
+
+  <script>
+    document.querySelectorAll('.fullscreen-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        const container = this.closest('.container');
+        const title = container.getAttribute('data-title');
+        const src = container.getAttribute('data-src');
+
+        // Create overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'fullscreen-overlay';
+        overlay.innerHTML = `
+          <div class="fullscreen-header">
+            <h2>${title}</h2>
+            <button class="close-fullscreen" aria-label="Close fullscreen">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <iframe class="fullscreen-iframe" src="${src}" allowfullscreen></iframe>
+        `;
+
+        document.body.classList.add('fullscreen-mode');
+        document.body.appendChild(overlay);
+
+        // Close on button click
+        overlay.querySelector('.close-fullscreen').addEventListener('click', closeFullscreen);
+
+        // Close on ESC key
+        const handleEsc = (e) => {
+          if (e.key === 'Escape') closeFullscreen();
+        };
+        document.addEventListener('keydown', handleEsc);
+
+        // Store handler to remove later
+        overlay._escHandler = handleEsc;
+      });
+    });
+
+    function closeFullscreen() {
+      document.body.classList.remove('fullscreen-mode');
+      const overlay = document.querySelector('.fullscreen-overlay');
+      if (overlay) {
+        if (overlay._escHandler) {
+          document.removeEventListener('keydown', overlay._escHandler);
+        }
+        overlay.remove();
+      }
+    }
+  </script>
 </body>
 </html>
